@@ -1,10 +1,35 @@
 function aoClicar() {
 
     // Captura dos elementos dos Inputs no HTML
-    let getNameProvider = document.querySelector('#nameProvider').value;
+    let getNameProvider = document.getElementById('nameProvider').value;
+    let nameProvider = document.getElementById('nameProvider');
     let getIdPasep = parseFloat(document.querySelector('#idPasep').value);
+    let numberPisPasep = document.getElementById('idPasep');
     let getRateHours = parseFloat(document.querySelector('#rateHours').value);
+    let numberRateHours = document.getElementById('rateHours');
     let getWorkedHours = parseFloat(document.querySelector('#workedHours').value);
+    let numberWorkedHours = document.getElementById('workedHours');
+
+    // Deixando os campos obrigatório para preenchimento
+    if (!nameProvider.checkValidity()) {
+        alert('O nome do prestador de serviços PJ é obrigatório.');
+        aoClicar.preventDefault();
+    }
+
+    if (!numberPisPasep.checkValidity()) {
+        alert('O PIS/PASEP do prestador de serviços PJ é obrigatório.');
+        aoClicar.preventDefault();
+    }
+
+    if (!numberRateHours.checkValidity()) {
+        alert('O valor hora do prestador de serviços PJ é obrigatório.');
+        aoClicar.preventDefault();
+    }
+
+    if (!numberWorkedHours.checkValidity()) {
+        alert('As horas trabalhadas no mês corrente do prestador de serviços PJ é obrigatório.');
+        aoClicar.preventDefault();
+    }
 
     // Calculo do valor bruto e taxas
     let grossValue = getRateHours * getWorkedHours;
@@ -39,7 +64,6 @@ function aoClicar() {
 
     let descontos = inss + irpf + iss;
     let netValue = valueGross - descontos;
-
 
     let mensagemValorBruto = ('Valor Bruto: ' + valueGross + '.');
     let menssageNetValue = ('Sr(a): ' + getNameProvider + ', PIS/PASEP: ' + getIdPasep + ', ' + ' seu salário líquido é: ' + netValue + '');
