@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Av 1 - Sistema de pagamento</title>
+</head>
+
+<body>
+    <h3>Cadatre o prestador do serviço:</h3>
+
+    <div class="provider">
+
+        <p>Nome do prestador:</p>
+        <input type="text" id="nameProvider" placeholder="Nome do prestador"></br>
+
+        <p>Número do PIS/PASEP:</p>
+        <input type="number" id="idPasep" placeholder="PIS/PASEP"> </br>
+
+        <p>Valor da hora do prestador:</p>
+        <input type="number" id="rateHours" placeholder="Valor/Hora"> </br>
+
+        <p>Quantidade de horas trabalhadas no mês corrente:</p>
+        <input type="number" id="workedHours" placeholder="Horas/Mês"> </br></br>
+
+        <input type="button" class="btnCalcular" value="Calcular"> </br>
+
+    </div>
+
+    <p id="mensagemValorBruto"></p>
+    <p id="menssagemDescontos"></p>
+    <p id="menssagemNetValue"></p>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
