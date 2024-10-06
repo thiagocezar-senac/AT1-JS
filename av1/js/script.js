@@ -31,6 +31,21 @@ function aoClicar() {
         aoClicar.preventDefault();
     }
 
+    // Definindo os valores minímos para valor/hora e hora/mês
+    if (getRateHours < 20) {
+        alert('O valor/hora minímo é R$ 20,00.');
+        aoClicar.preventDefault();
+    } else if (getRateHours > 500) {
+        alert('O valor/hora máximo é R$ 500,00.');
+        aoClicar.preventDefault();
+    } else if (getWorkedHours < 20){
+        alert('As horas trabalhadas no mês deve ser no mínimo 20 horas.');
+        aoClicar.preventDefault();
+    } else if (getWorkedHours > 200) {
+        alert('As horas trabalhadas no mês deve ser no máximo 200 horas.');
+        aoClicar.preventDefault();
+    }
+
     // Calculo do valor bruto e taxas
     let grossValue = getRateHours * getWorkedHours;
     let valueGross = parseInt(grossValue);

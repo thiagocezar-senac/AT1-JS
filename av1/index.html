@@ -9,10 +9,12 @@
 </head>
 
 <body>
-    <h3>Cadatre o prestador do serviço:</h3>
 
-    <div class="provider">
+    <div class="container-pj">
 
+    <h3>Calculadora de serviços PJ:</h3>
+
+        <div class="row">
         <p>Nome do prestador:</p>
         <input type="text" id="nameProvider" placeholder="Nome do prestador" required></br>
 
@@ -27,11 +29,33 @@
 
         <input type="button" class="btnCalcular" value="Calcular"> </br>
 
-    </div>
+        <table class="teste">
+            <tr>
+                <th>Descontos</th>
+                <th>Salário</br>Bruto</th>
+                <th>Salário</br>Líquido</th>
+            </tr>
+            <tbody>
+                <tr>
+                    <td>INSS</td>
+                    <td id="menssagemDescontos"></td> 
+                </tr>
+                <tr>
+                    <td>IRPF</td>
+                </tr>
+                <tr>
+                    <td>ISS</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <p id="mensagemValorBruto"></p>
+        <p id="mensagemValorBruto"></p>
     <p id="menssagemDescontos"></p>
     <p id="menssagemNetValue"></p>
+
+    </div>
+
+    </div>
 
     <script src="js/script.js"></script>
 
