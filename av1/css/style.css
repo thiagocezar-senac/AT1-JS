@@ -11,6 +11,8 @@ body {
     border-radius: 8px;
     width: 40%;
     background-color: lightgray;
+    display: flex;
+    flex-direction: column;
 }
 
 .container-pj h3 {
@@ -24,17 +26,18 @@ body {
     align-items: center;
 }
 
-.teste {
-    border: 1px solid;
-    align-items: center;
-    justify-content: center;
+#salarioBruto {
+    align-self: center;
+    padding: 15px;
 }
 
-.teste th {
-    border: 1px solid;
+#inssValor,
+#irpfValor,
+#issValor {
+    align-self: center;
+    padding: 15px;
 }
 
-
-.teste td {
-    border: 1px solid;
+#menssagemSalarioLiquido {
+    align-self: center;
 }

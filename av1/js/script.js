@@ -1,14 +1,22 @@
+function formatarParaReal(valor) {
+    return new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    }).format(valor);
+}
+
 function aoClicar() {
 
     // Captura dos elementos dos Inputs no HTML
     let getNameProvider = document.getElementById('nameProvider').value;
     let nameProvider = document.getElementById('nameProvider');
-    let getIdPasep = parseFloat(document.querySelector('#idPasep').value);
+    let getIdPasep = document.querySelector('#idPasep').value;
     let numberPisPasep = document.getElementById('idPasep');
     let getRateHours = parseFloat(document.querySelector('#rateHours').value);
     let numberRateHours = document.getElementById('rateHours');
     let getWorkedHours = parseFloat(document.querySelector('#workedHours').value);
     let numberWorkedHours = document.getElementById('workedHours');
+
 
     // Deixando os campos obrigatório para preenchimento
     if (!nameProvider.checkValidity()) {
@@ -38,12 +46,20 @@ function aoClicar() {
     } else if (getRateHours > 500) {
         alert('O valor/hora máximo é R$ 500,00.');
         aoClicar.preventDefault();
-    } else if (getWorkedHours < 20){
+    } else if (getWorkedHours < 20) {
         alert('As horas trabalhadas no mês deve ser no mínimo 20 horas.');
         aoClicar.preventDefault();
     } else if (getWorkedHours > 200) {
         alert('As horas trabalhadas no mês deve ser no máximo 200 horas.');
         aoClicar.preventDefault();
+    }
+
+    // Definindo valor máximo para caracteres do PIS/PASEP
+    let maxCaracteres = 11;
+
+    if (getIdPasep.length > maxCaracteres) {
+        // Se o número de caracteres exceder o limite, corta o excesso
+        getIdPasep = getIdPasep.slice(0, maxCaracteres);
     }
 
     // Calculo do valor bruto e taxas
@@ -80,15 +96,30 @@ function aoClicar() {
     let descontos = inss + irpf + iss;
     let netValue = valueGross - descontos;
 
-    let mensagemValorBruto = ('Valor Bruto: ' + valueGross + '.');
-    let menssageNetValue = ('Sr(a): ' + getNameProvider + ', PIS/PASEP: ' + getIdPasep + ', ' + ' seu salário líquido é: ' + netValue + '');
-    let menssageDescontos = ('Descontos: INSS: ' + inss + '; ' + 'IRPF: ' + irpf + '; ' + 'ISS: ' + iss + '.')
+    salarioBrutoReal = formatarParaReal(valueGross);
+    salarioLiquidoReal = formatarParaReal(netValue);
+    inssReal = formatarParaReal(inss);
+    irpfReal = formatarParaReal(irpf);
+    issReal = formatarParaReal(iss);
+    descontosReal = formatarParaReal(descontos);
 
-    document.querySelector("#mensagemValorBruto").innerHTML = mensagemValorBruto;
-    document.querySelector("#menssagemNetValue").innerHTML = menssageNetValue;
-    document.querySelector("#menssagemDescontos").innerHTML = menssageDescontos;
+    let salarioBruto = ('Salário Bruto: ' + salarioBrutoReal + '.');
+    document.querySelector("#salarioBruto").innerHTML = salarioBruto;
 
+    let inssValor = ('INSS: ' + inssReal + '.');
+    document.querySelector("#inssValor").innerHTML = inssValor;
+
+    let irpfValor = ('IRPF: ' + irpfReal + '.');
+    document.querySelector("#irpfValor").innerHTML = irpfValor;
+
+    let issValor = ('ISS: ' + issReal + '.');
+    document.querySelector("#issValor").innerHTML = issValor;
+
+    let mensagemSalarioLiquido = ('Sr(a): ' + getNameProvider + ', inscrito sobre o PIS/PASEP: ' + getIdPasep + ', seu salário líquido é: ' + salarioLiquidoReal + '.');
+    document.querySelector("#menssagemSalarioLiquido").innerHTML = mensagemSalarioLiquido;
 }
+
+
 
 let botao = document.querySelector('.btnCalcular');
 botao.addEventListener('click', aoClicar);
